@@ -1,0 +1,22 @@
+[package]
+name = "file_eraser"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "ForenX Secure File & Metadata Eraser — read-only target resolution and filesystem probing."
+
+[dependencies]
+eraser_common = { path = "../eraser_common" }
+serde = { version = "1", features = ["derive"] }
+thiserror = "1"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_Security",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Ioctl",
+] }
+
+[dev-dependencies]
+tempfile = "3"

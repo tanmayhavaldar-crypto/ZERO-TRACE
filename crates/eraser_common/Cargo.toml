@@ -1,0 +1,21 @@
+[package]
+name = "eraser_common"
+version.workspace = true
+edition.workspace = true
+publish.workspace = true
+description = "ForenX Secure Eraser shared code (audit log, hashing, storage, DTOs)."
+
+[features]
+default = []
+# Optional, high-volume progress/sample key-value store. The normal
+# audit flow (SQLite) never depends on this feature — see storage/mod.rs.
+rocksdb-store = ["dep:rocksdb"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "1"
+rusqlite = { version = "0.31", features = ["bundled"] }
+rocksdb = { version = "0.22", optional = true }
